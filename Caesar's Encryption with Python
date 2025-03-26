@@ -1,0 +1,87 @@
+#Foram colocados comentários ao longo do código para explicar o que cada função do código faz
+
+import getpass 
+#import: usado para importar módulos ou bibliotecas //// #getpass:uma função que permite obter uma senha do usuario sem exibi-la no console(util para proteger informações sensiveis)
+print("-"*50)
+print("")
+print("Caso deseje finalizar o programa, insira: '999'")
+escolha = int(input("Selecione uma ação: [ 1 ] Encriptar  [ 2 ] Desencriptar : "))
+print("")
+
+if input == '999':
+    exit()
+letras = [' ','a','ã','b','c','d','e','ê','f','g','h','i','í','j','k','l','m','n','o','ó','ô','õ','p','q','r','s','t','u','ú','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9','ç',',','.']
+match escolha: #o match é usado para avaliar o valor da variavel, o case só funciona dentro dele
+    case 1: #aqui caso escolha = 1 executa o bloco, poderia ser ifs ao inves do match e case mas o case ajuda a ser usado menos memoria da máquina e processamento
+        def criptografar():
+            conteudo = input("Digite Algo para Encriptar(Insira somente letras, números, espaços, sinais de pontuação e acentuações):").lower() #.lower() é pra transformar tudo digitado em minúsculo
+            while True:
+                chave = input("Agora crie a chave(Insira somente números inteiros):")
+                if not chave.isdigit():  # Verifica se a string contém apenas dígitos
+                    print("Digite apenas números inteiros!")
+                else:
+                    chave = int(chave)
+                    break
+            criptografado = ''
+            tamanho = len(letras)#len(letras) conta quantos itens tem na lista
+
+        
+            for i in conteudo: #para cada letra (i) em conteudo (o input que pede o texto)
+                posicao = letras.index(i) #posicao recebe letras.index(i) no caso, posicao recebe a posição(index) da letra (i) na lista letras
+                cript1 = letras[(posicao + chave)%tamanho] #descript1 recebe letras (o uso de () é só para definir a ordem de execução mas o [] é preciso pra mexer com coisas de lista), a posicao que é o numero que tal letra tá na lista + a chave criada pra decidir a quantidade itens da lista pular até voltar ao oq era e o % tamanho é para não bugar então supondo que tenha 30 itens na lista ele iria recomeçar ao invés de procurar um item numero 31, então se nesse caso a chave for 60 ele vai dar duas voltas na lista.
+                criptografado += cript1 #aqui criptografado recebe criptografado + cript1 oq faz cada letra se juntar em uma frase (string)
+                
+                criptografado = criptografado.replace("a","*").replace("b","{").replace("c", "!").replace("d",")") #.replace() troca ("item a" por "item b")
+                criptografado = criptografado.replace("e","@").replace("f", "}").replace("g","#").replace("h","(")
+                criptografado = criptografado.replace("i","$").replace("j","[").replace("k","%").replace("l","&")
+                criptografado = criptografado.replace("m","]").replace("n","?").replace("o",";").replace("p","~")
+                criptografado = criptografado.replace("q","^").replace("r",'|').replace("s","M").replace("t","+")
+                criptografado = criptografado.replace("u","=").replace("v","E").replace("w","B").replace("x","J")
+                criptografado = criptografado.replace("y","C").replace("z","D").replace(" ","/")
+                criptografado = criptografado.replace("1","¨").replace("2","L").replace("3","G").replace("4","H")
+                criptografado = criptografado.replace("5","K").replace("6","A").replace("7","F").replace("8","I")
+                criptografado = criptografado.replace("9","`").replace("0",">").replace("ã","N").replace("ê","O")
+                criptografado = criptografado.replace("ó","P").replace("ô","Q").replace("õ","R").replace("ú","S")
+                criptografado = criptografado.replace(",","T").replace(".","U")
+                
+
+            usuario = getpass.getuser()
+            nomearquivo = input("Digite o nome do arquivo para manter sua criptografia:")
+            caminho_arquivo = r"C:\\Users\\" + usuario + r"\\Documents\\" + nomearquivo + r".txt" 
+                    #"r" antes da string: indica que a string é uma raw string(string bruta), onde caracteres de escape (como \n ou \t) não são processados, útil para caminhos de arquivo.
+                    #getuser(): função que retorna o nome do usuario atual do sistema
+
+            with open(caminho_arquivo, 'w') as arquivo: 
+                arquivo.write(f"Mensagem criptografada:\n{criptografado}\nChave: {chave}") 
+                        #with: Uma declaração que garante que um recurso (como um arquivo) seja corretamente gerenciado, abrindo e fechando automaticamente o recurso após o bloco de código.
+                        #open("variavel", 'w') as "variavel": Abre um arquivo para escrita ('w' significa write). O uso de with garante que o arquivo será fechado após o uso.
+              #"variavel".write(): Método usado para escrever dados em um arquivo aberto. Você pode passar uma string como argumento.
+            print(f'Arquivo criado em: {caminho_arquivo}')
+                    #"f" antes de uma string: Indica que a string é uma f-string (formatted string), permitindo incluir expressões dentro de chaves {} que serão avaliadas e formatadas automaticamente.
+        criptografar()  
+    case 2:#aqui caso escolha = 2 executa o bloco, poderia ser ifs ao inves do match e case mas o case ajuda a ser usado menos memoria da máquina e processamento
+        criptografado = input("Digite o texto para ser descriptografado: ")
+        chave = int(input("Agora Digite a chave:"))
+        criptografado = criptografado.replace("{", "b").replace("*", "a").replace(")", "d").replace("!", "c") #.replace() troca ("item a" por "item b")
+        criptografado = criptografado.replace("}", "f").replace("@", "e").replace("(", "h").replace("#", "g")
+        criptografado = criptografado.replace("[", "j").replace("$", "i").replace("%", "k").replace("&", "l")
+        criptografado = criptografado.replace("]", "m").replace(";", "o").replace("?", "n").replace("~", "p")
+        criptografado = criptografado.replace("^", "q").replace("|", "r").replace("M", "s").replace("+", "t")
+        criptografado = criptografado.replace("=", "u").replace("E", "v").replace("B", "w").replace("J", "x")
+        criptografado = criptografado.replace("C", "y").replace("D", "z").replace("/", " ")
+        criptografado = criptografado.replace("¨","1").replace("L","2").replace("G","3").replace("H","4")
+        criptografado = criptografado.replace("K","5").replace("A","6").replace("F","7").replace("I","8")
+        criptografado = criptografado.replace("`","9").replace(">","0").replace("N","ã").replace("O","ê")
+        criptografado = criptografado.replace("P","ó").replace("Q","ô").replace("R","õ").replace("S","ú")
+        criptografado = criptografado.replace("T",",").replace("U",".")
+
+        descriptografado = ''
+        tamanho = len(letras) #len(letras) conta quantos itens tem na lista
+
+
+        for i in criptografado: #para cada letra (i) em criptografado (o input que pede o texto)
+            posicao = letras.index(i) #posicao recebe letras.index(i) no caso, posicao recebe a posição(index) da letra (i) na lista letras
+            descript1 = letras[(posicao - chave) % tamanho]#descript1 recebe letras (o uso de () é só para definir a ordem de execução mas o [] é preciso pra mexer com coisas de lista), a posicao que é o numero que tal letra tá na lista - a chave criada pra decidir a quantidade itens da lista pular até voltar ao oq era e o % tamanho é para não bugar então supondo que tenha 30 itens na lista ele iria recomeçar ao invés de procurar um item numero 31, então se nesse caso a chave for 60 ele vai dar duas voltas na lista.
+            descriptografado += descript1 #aqui descriptografado recebe descriptografado + descript1 oq faz cada letra se juntar em uma frase (string)
+
+        print(descriptografado)  #e por fim printa na tela
