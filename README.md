@@ -1,13 +1,48 @@
-# Caesar-s-Encryption
-This project was developed in Python and uses the concept of the Caesar Cipher, combined with symbol substitution, to encrypt messages entered by the user. The approach involves shifting characters in the alphabet and adding an extra layer of complexity through symbolic replacements.
+# 🔐 Caesar's Encryption - Caesar Cipher with Symbol Substitution
 
-# Full Explanation
-This project is designed to encrypt and decrypt texts using the Caesar Cipher, a simple substitution method where each character in a text is shifted by a fixed number of positions in the alphabet. It is interactive, allowing the user to choose between encrypting or decrypting a text, as well as saving the results to a file.
-How Encryption Works: The user inputs the text they want to encrypt and provides a numerical key (an integer).
-The program shifts each letter of the text based on the provided key. For example, with a key of 3, the letter 'a' becomes 'd', 'b' becomes 'e', and so on. The shift is circular, meaning that when the end of the alphabet is reached, it starts again from the beginning (e.g., 'z' becomes 'c').
-To add complexity, the text undergoes an additional substitution process, where specific letters are replaced with symbols.
-The encrypted text is saved to a file in the user's documents directory.
-How Decryption Works: The user provides the encrypted text along with the same key used to encrypt it.
-The program reverses the symbol substitutions to retrieve the original letters.
-Then, it applies the reverse shift (subtracting the key) to recover the original text, once again ensuring a circular shift through the alphabet.
-The final result is displayed on the console.
+## 📌 Overview
+This Python project implements the classic **Caesar Cipher** with an additional security layer through symbol substitution. It provides interactive message encryption and decryption with the option to save results to a file.
+
+## ✨ Key Features
+- **Advanced encryption**: Combines alphabetical shift with symbol substitution
+- **Interactive process**: User-friendly command line interface
+- **Secure storage**: Automatically saves encrypted texts
+- **Precise decryption**: Recovers original messages with correct key
+
+## 🛠️ How It Works
+
+### 🔒 Encryption
+1. User enters text to encrypt
+2. Provides a numeric key (integer)
+3. The program:
+   - Shifts each letter by the key value (e.g., key 3: 'a' → 'd')
+   - Performs additional symbol substitutions
+   - Saves encrypted text to file (in documents folder)
+
+### 🔓 Decryption
+1. User provides encrypted text
+2. Enters the same key used for encryption
+3. The program:
+   - Reverses symbol substitutions
+   - Applies inverse shift (subtracts the key)
+   - Displays original message in console
+
+## ⚙️ Technologies Used
+- **Python 3** (main language)
+- **Standard libraries**: os, string, etc.
+- **Storage**: TXT files in documents folder
+
+## 📚 Additional Documentation
+- Maintains original letter capitalization
+- Non-alphabetic characters remain unchanged
+- Circular system (after 'z' returns to 'a')
+
+## 👨‍💻 Developer
+**Heitor Carnielo Janko**  
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/heitor-carnielo-janko-873bb1348/)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/HelloBigBoi124)
+
+---
+
+> "Encryption is the art of protecting information - a necessity in the digital age."  
+> 🔐 Digital security begins with simple algorithms!
